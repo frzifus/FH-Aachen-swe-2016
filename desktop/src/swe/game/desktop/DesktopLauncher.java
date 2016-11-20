@@ -11,7 +11,7 @@ public class DesktopLauncher {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         new LwjglApplication(new Pong(), config);
 
-
+        // TODO: Demonstration der Kommunikation mit der Hauptanwendung. Code muss an der richtigen Stelle ausgeführt werden
         Gson gson = new Gson();
         JsonObject jso = new JsonObject();
         // in dem arg[] sind die namen der spieler enthalten
