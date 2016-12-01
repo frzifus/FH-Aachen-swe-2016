@@ -3,13 +3,34 @@ package swe.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.Input.Keys;
+// import com.badlogic.gdx.Input.Keys;
+
+/**
+ * @author Frzifus
+ */
 
 public class GameScreen implements Screen {
 
+  /**
+   * player one (left)
+   */
   private PongPlayer playerOne;
+
+  /**
+   * player two (right)
+   */
+  private PongPlayer playerTwo;
+
+  /**
+   * hold reference to game
+   */
   public Pong game;
 
+  /**
+   *  Constructor
+   * @param reference of game
+   *                  create two new players and hold a reference of game
+   */
   GameScreen(Pong game) {
     this.game = game;
     this.playerOne = new PongPlayer();
@@ -46,11 +67,14 @@ public class GameScreen implements Screen {
     // called when current screen changes from this to a different screen
   }
 
-  @Override public void pause() {}
+  @Override
+  public void pause() {}
 
-  @Override public void resume() {}
+  @Override
+  public void resume() {}
 
-  @Override public void dispose() {
+  @Override
+  public void dispose() {
     this.playerOne.dispose();
   }
 
