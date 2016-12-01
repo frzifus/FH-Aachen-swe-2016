@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.GL20;
  */
 
 public class Pong extends Game {
-  // private static final int gameSpeed = 10;
 
   WelcomeScreen welcomeScreen;
   GameScreen gameScreen;
@@ -18,7 +17,7 @@ public class Pong extends Game {
   public void create () {
     gameScreen = new GameScreen(this);
     welcomeScreen = new WelcomeScreen(this);
-    setScreen(gameScreen);
+    setScreen(welcomeScreen);
   }
 
   @Override

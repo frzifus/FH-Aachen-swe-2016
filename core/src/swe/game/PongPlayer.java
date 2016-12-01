@@ -1,7 +1,9 @@
 package swe.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Input;
 
 /**
  * @author Frzifus
@@ -22,7 +24,6 @@ public class PongPlayer {
    * width of the paddle
    */
   private int width;
-
 
   /**
    * height of the paddle
@@ -59,7 +60,7 @@ public class PongPlayer {
     this.width = 10;
     this.height = 80;
     this.positionX = 10;
-    this.positionY = 10;
+    this.positionY = 360;
     this.pSprite = new SpriteBatch();
     this.pTexture = new Texture("PaddleImage.jpg");
   }
@@ -139,7 +140,7 @@ public class PongPlayer {
   /**
    * @param widht
    *        the widht to set
-   * @param widht
+   * @param height
    *        the height to set
    */
   public void resizePlayer(int width, int height) {
@@ -153,8 +154,31 @@ public class PongPlayer {
    * @param positionY
    *        the positionY to set
    */
-  public void startPosition(int positionX, int positionY) {
+  public void setStartPosition(int positionX, int positionY) {
     this.positionX = positionX;
     this.positionY = positionY;
+  }
+
+  /**
+   * @param key to move up
+   *
+   * @param key to move down
+   *
+   */
+  public void setInputKeys(int up, int down) {}
+
+  /**
+   * @param gameSpeed
+   *        Influences the speed of the paddle
+   *
+   *  # We should ask ourselves if this is the right place
+   */
+  public void checkInput(int gameSpeed) {
+    if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
+      MoveUp(1 * gameSpeed);
+    } else if(Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
+      MoveDown(1 * gameSpeed);
+    }
+
   }
 }

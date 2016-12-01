@@ -3,13 +3,17 @@ package swe.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-// import com.badlogic.gdx.Input.Keys;
 
 /**
  * @author Frzifus
  */
 
 public class GameScreen implements Screen {
+
+  /**
+   * static const gameSpeed
+   */
+  private static final int gameSpeed = 10;
 
   /**
    * player one (left)
@@ -34,24 +38,20 @@ public class GameScreen implements Screen {
   GameScreen(Pong game) {
     this.game = game;
     this.playerOne = new PongPlayer();
+    this.playerTwo = new PongPlayer();
+    this.playerTwo.setStartPosition(780, 10);
   }
 
   @Override
   public void render(float delta) {
-
-    // if(Gdx.input.isKeyPressed(Keys.DPAD_UP)) {
-    //   playerOne.MoveUp(Gdx.graphics.getDeltaTime() * gameSpeed);
-    // }
-    // if(Gdx.input.isKeyPressed(Keys.DPAD_DOWN)) {
-    //   playerOne.MoveDown(Gdx.graphics.getDeltaTime() * gameSpeed);
-    // }
-
+    this.playerOne.checkInput(gameSpeed);
+    this.playerTwo.checkInput(gameSpeed);
 
     Gdx.gl.glClearColor(1, 1, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     this.playerOne.render();
-    // use your own criterion here game.setScreen(game.anotherScreen);
+    this.playerTwo.render();
   }
 
   @Override
