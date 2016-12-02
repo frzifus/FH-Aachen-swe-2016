@@ -133,7 +133,7 @@ public class PongPlayer {
    * @return life status
    *              check if player is still alive
    */
-  public boolean stillAlive() {
+  public boolean isStillAlive() {
     return (this.lifeLeft < 0) ? false : true;
   }
 

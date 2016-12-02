@@ -10,13 +10,27 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class Pong extends Game {
 
-  WelcomeScreen welcomeScreen;
-  GameScreen gameScreen;
+  public WelcomeScreen welcomeScreen;
+  public GameScreen gameScreen;
+  public EndScreen endScreen;
+
+  public static String winner;
+  public static String loser;
+
+  public String namePlayerOne;
+  public String namePlayerTwo;
+
+  public Pong(String namePlayerOne, String namePlayerTwo) {
+    this.namePlayerOne = namePlayerOne;
+    this.namePlayerTwo = namePlayerTwo;
+  }
 
   @Override
   public void create () {
     gameScreen = new GameScreen(this);
     welcomeScreen = new WelcomeScreen(this);
+    endScreen = new EndScreen(this);
+
     setScreen(welcomeScreen);
   }
 
@@ -24,5 +38,8 @@ public class Pong extends Game {
   public void dispose () {
     welcomeScreen.dispose();
     gameScreen.dispose();
+    endScreen.dispose();
   }
+
+
 }

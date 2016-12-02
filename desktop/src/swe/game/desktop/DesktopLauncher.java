@@ -12,17 +12,21 @@ public class DesktopLauncher {
     config.title  = "Pong";
     config.width  = 800;
     config.height = 600;
-    new LwjglApplication(new Pong(), config);
+    String p1 = "default1";
+    String p2 = "default2";
+    if (arg.length >= 2) {
+      p1 = arg[0];
+      p2 = arg[1];
+    }
+    new LwjglApplication(new Pong(p1, p2), config);
 
     Gson gson = new Gson();
     JsonObject jso = new JsonObject();
 
-    if (arg.length >= 2) {
-      jso.addProperty("winner", arg[0]);
-      jso.addProperty("loser", arg[1]);
-      String json = gson.toJson(jso);
-      System.out.println(json);
-    }
+    jso.addProperty("winner", Pong.winner);
+    jso.addProperty("loser", Pong.loser);
+    String json = gson.toJson(jso);
+    System.out.println(json);
   }
 
   public void Render() {
