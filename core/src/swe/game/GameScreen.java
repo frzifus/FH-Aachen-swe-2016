@@ -3,6 +3,7 @@ package swe.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Input.Keys;
 
 /**
  * @author Frzifus
@@ -40,6 +41,7 @@ public class GameScreen implements Screen {
     this.playerOne = new PongPlayer();
     this.playerTwo = new PongPlayer();
     this.playerTwo.setStartPosition(780, 10);
+    this.playerOne.setInputKeys(Keys.W, Keys.S);
   }
 
   @Override
