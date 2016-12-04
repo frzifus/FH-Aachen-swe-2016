@@ -3,8 +3,9 @@
 [Inspiration](https://github.com/libgdx/libgdx/wiki/Scene2d)
 
 # TODO:
-- trash
-- trash
-- trash
+- Collision detection
+- Create playing field
+- Scoreboard
+- Add sounds
 
 
