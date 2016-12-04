@@ -115,6 +115,13 @@ public class PongPlayer {
   }
 
   /**
+   * @return the pSprite
+   */
+  public String getpSprite() {
+    return this.pSprite;
+  }
+
+  /**
    * @param life
    *        the life to set
    */
