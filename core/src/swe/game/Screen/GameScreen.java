@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 
 /**
  * @author Frzifus
@@ -58,6 +59,11 @@ public class GameScreen implements Screen {
   public CtlInputProcessor ctlInputProcessor;
 
   /**
+   *
+   */
+  private Music music;
+
+  /**
    *  Constructor
    * @param reference of game
    *                  create two new players and hold a reference of game
@@ -71,6 +77,8 @@ public class GameScreen implements Screen {
     this.playingField = new PlayingField(700,500);
     this.collision = new Collision(playerOne, playerTwo, pongSphere,
                                    playingField);
+
+    this.music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
 
     this.playerOne.setStartPosition(playingField.getX() + 10 ,
                                     260);
@@ -125,6 +133,11 @@ public class GameScreen implements Screen {
 
   @Override
   public void dispose() {
+    music.dispose();
+  }
+
+  public Music getMusic() {
+    return this.music;
   }
 
 }

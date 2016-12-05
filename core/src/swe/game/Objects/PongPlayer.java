@@ -32,6 +32,10 @@ public class PongPlayer extends GameObject {
    */
   private int keyDown;
 
+  private int moveDownDirective;
+
+  private int moveUpDirective;
+
   /**
    * Constructor with default name, lifeLeft, widht, height,
    *                          positionX, positionY, batch and texture
@@ -40,6 +44,8 @@ public class PongPlayer extends GameObject {
     super("PaddleImage.jpg");
     this.name = "default";
     this.lifeLeft = 3;
+    this.moveUpDirective = 1;
+    this.moveDownDirective = 1;
     this.sprite.setSize(10f, 80f);
     this.keyUp = Input.Keys.DPAD_UP;
     this.keyDown = Input.Keys.DPAD_DOWN;
@@ -59,14 +65,31 @@ public class PongPlayer extends GameObject {
    *        the y to increase Y
    */
   public void MoveUp(int y) {
+    y = y * moveUpDirective;
     this.sprite.setY(this.sprite.getY() + y);
   }
+
+  /**
+   *
+   */
+  public void setMoveUpDirective(int y) {
+    this.moveUpDirective = y;
+  }
+
+  /**
+   *
+   */
+  public void setMoveDownDirective(int y) {
+    this.moveDownDirective = y;
+  }
+
 
   /**
    * @param y
    *        the y to reduce Y
    */
   public void MoveDown(int y) {
+    y = y * moveDownDirective;
     this.sprite.setY(this.sprite.getY() - y);
   }
 

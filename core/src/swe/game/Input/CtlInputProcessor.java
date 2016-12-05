@@ -31,6 +31,15 @@ public class CtlInputProcessor implements InputProcessor {
       keyPressed = false;
     }
 
+    if (keycode == Input.Keys.M) {
+      if (game.gameScreen.getMusic().isPlaying()) {
+        game.gameScreen.getMusic().stop();
+      } else {
+        game.gameScreen.getMusic().play();
+      }
+    }
+
+
     if (keycode == Input.Keys.SPACE) {
       if (game.getScreen() == game.gameScreen) {
         game.setScreen(game.pauseScreen);
