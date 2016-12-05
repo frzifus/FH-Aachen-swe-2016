@@ -19,19 +19,24 @@ public class WelcomeScreen implements Screen {
   public Pong game;
 
   /**
-   * hold reference to game
+   *
    */
-  SpriteBatch greetings;
+  private SpriteBatch greetings;
 
   /**
    *
    */
-  BitmapFont font;
+  private BitmapFont font;
 
   /**
-   * hold reference to game
+   *
    */
-  String greetingsMsg = "Space to enter!";
+  private String greetingsMsg = "Space to enter!";
+
+  /**
+   *
+   */
+  public CtlInputProcessor ctlInputProcessor;
 
   /**
    *  Constructor
@@ -43,6 +48,8 @@ public class WelcomeScreen implements Screen {
     greetings = new SpriteBatch();
     font = new BitmapFont();
     font.setColor(0.5f,0.4f,0,1);
+    ctlInputProcessor = new CtlInputProcessor(game);
+    Gdx.input.setInputProcessor(ctlInputProcessor);
   }
 
   @Override
@@ -54,12 +61,6 @@ public class WelcomeScreen implements Screen {
     // magic lulz
     font.draw(greetings, greetingsMsg, 350, 350);
     greetings.end();
-
-    if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-       game.setScreen(game.gameScreen);
-    } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-      Gdx.app.exit();
-    }
   }
 
   @Override

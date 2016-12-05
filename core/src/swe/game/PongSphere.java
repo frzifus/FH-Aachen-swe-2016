@@ -15,13 +15,16 @@ public class PongSphere extends GameObject {
 
   Random rand;
 
+  float overallSpeed;
+
   PongSphere() {
     super("SphereImage.png");
     this.sprite.setSize(20f, 20f);
     this.setStartPosition(350, 350);
     this.rand = new Random();
-    this.xSpeed = 2.5f;
-    this.ySpeed = this.rand.nextFloat() * (1.5f - 0.5f) + 1.5f;
+    this.overallSpeed = 1f;
+    this.xSpeed = 2.5f * overallSpeed;
+    this.ySpeed = this.rand.nextFloat() * (1.5f - 0.5f) + 1.5f * overallSpeed;
   }
 
   public void render() {
@@ -38,8 +41,8 @@ public class PongSphere extends GameObject {
    *        the y to increase sprite position
    */
   public void move(final float x, final float y) {
-    this.sprite.setX(this.sprite.getX() + x);
-    this.sprite.setY(this.sprite.getY() + y);
+    this.sprite.setX(this.sprite.getX() + x * this.overallSpeed);
+    this.sprite.setY(this.sprite.getY() + y * this.overallSpeed);
   }
 
 
@@ -48,6 +51,7 @@ public class PongSphere extends GameObject {
    */
   public void hitPlayer() {
     this.xSpeed *= -1;
+    this.overallSpeed += 0.1f;
     float nextRnd = this.rand.nextFloat() * (2.5f - 1f) + 2.5f;
     if (yIsPositive()) {
       setYSpeed(nextRnd);
@@ -82,6 +86,7 @@ public class PongSphere extends GameObject {
    * reset position
    */
   public void resetPosition() {
+    this.overallSpeed = 1;
     this.setStartPosition(350, 350);
   }
 

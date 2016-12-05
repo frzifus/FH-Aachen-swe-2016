@@ -31,7 +31,6 @@ public class GameScreen implements Screen {
    */
   public Pong game;
 
-
   /**
    * hold reference to scoreBoard
    */
@@ -53,6 +52,10 @@ public class GameScreen implements Screen {
    */
   public PlayingField playingField;
 
+  /**
+   *
+   */
+  public CtlInputProcessor ctlInputProcessor;
 
   /**
    *  Constructor
@@ -65,7 +68,7 @@ public class GameScreen implements Screen {
     this.pongSphere = new PongSphere();
     this.playerOne = scoreBoard.getPlayerOne();
     this.playerTwo = scoreBoard.getPlayerTwo();
-    this.playingField = new PlayingField();
+    this.playingField = new PlayingField(700,500);
     this.collision = new Collision(playerOne, playerTwo, pongSphere,
                                    playingField);
 
@@ -76,6 +79,8 @@ public class GameScreen implements Screen {
                                     - playerTwo.getWidth() - 10,
                                     260);
     playerOne.setInputKeys(Keys.W, Keys.S);
+    ctlInputProcessor = new CtlInputProcessor(game);
+    Gdx.input.setInputProcessor(ctlInputProcessor);
   }
 
   @Override
@@ -89,15 +94,9 @@ public class GameScreen implements Screen {
     playingField.render();
     collision.Check();
     scoreBoard.showScore();
-    if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-      Gdx.app.exit();
-    }
+
     if (this.scoreBoard.CheckSomeoneDie()) {
       game.setScreen(game.endScreen);
-    }
-
-    if (Gdx.input.isKeyPressed(Keys.SPACE)) {
-      game.setScreen(game.pauseScreen);
     }
 
     this.pongSphere.render();

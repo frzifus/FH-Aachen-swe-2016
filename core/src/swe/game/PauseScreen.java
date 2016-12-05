@@ -33,14 +33,15 @@ public class PauseScreen implements Screen {
    */
   private String pauseMsg = "Leertaste zum weiterspielen...";
 
-
+  public CtlInputProcessor ctlInputProcessor;
 
   PauseScreen(Pong game) {
     this.game = game;
     msgBatch = new SpriteBatch();
     font = new BitmapFont();
     font.setColor(0.5f,0.4f,0,1);
-
+    ctlInputProcessor = new CtlInputProcessor(game);
+    Gdx.input.setInputProcessor(ctlInputProcessor);
   }
 
   @Override
@@ -55,11 +56,11 @@ public class PauseScreen implements Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-    if(Gdx.input.isKeyPressed(Keys.SPACE)) {
-      game.setScreen(game.gameScreen);
-    } else if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-      Gdx.app.exit();
-    }
+    // if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+    //   game.setScreen(game.gameScreen);
+    // } else if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+    //   Gdx.app.exit();
+    // }
   }
 
   @Override
