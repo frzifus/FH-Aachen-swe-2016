@@ -9,21 +9,41 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class PongSphere extends GameObject {
 
-  float xSpeed;
-  float ySpeed;
+  private final int xDefault = 250;
 
-  Random rand;
+  private final int yDefault = 300;
 
-  float overallSpeed;
+  private float xSpeed;
+
+  private float ySpeed;
+
+  private Random rand;
+
+  private float overallSpeed;
+
+  private boolean hold;
 
   PongSphere() {
     super("SphereImage.png");
     this.sprite.setSize(20f, 20f);
-    this.setStartPosition(350, 350);
+    this.setStartPosition(xDefault, yDefault);
     this.rand = new Random();
     this.overallSpeed = 1f;
+    this.hold = false;
     this.xSpeed = 2.5f * overallSpeed;
     this.ySpeed = this.rand.nextFloat() * (1.5f - 0.5f) + 1.5f * overallSpeed;
+  }
+
+  public void toggleHold() {
+    if (!this.hold) {
+      this.xSpeed = 0;
+      this.ySpeed = 0;
+      this.hold = true;
+    } else {
+      this.hold = false;
+      // todo
+      // resume
+    }
   }
 
   public void render() {
@@ -86,7 +106,10 @@ public class PongSphere extends GameObject {
    */
   public void resetPosition() {
     this.overallSpeed = 1;
-    this.setStartPosition(350, 350);
+    if (this.xSpeed < 0) {
+      this.xSpeed *= -1;
+    }
+    this.setStartPosition(xDefault, yDefault);
   }
 
 }

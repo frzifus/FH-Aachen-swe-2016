@@ -28,7 +28,7 @@ public class Pong extends Game {
   @Override
   public void create () {
     scoreBoard = new ScoreBoard(playerOneName, playerTwoName);
-    welcomeScreen = new WelcomeScreen(this);
+    welcomeScreen = new WelcomeScreen(this, scoreBoard);
     gameScreen = new GameScreen(this, scoreBoard);
     endScreen = new EndScreen(this, scoreBoard);
     pauseScreen = new PauseScreen(this);

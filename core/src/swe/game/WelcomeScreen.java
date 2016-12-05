@@ -39,17 +39,41 @@ public class WelcomeScreen implements Screen {
   public CtlInputProcessor ctlInputProcessor;
 
   /**
+   *
+   */
+  public ScoreBoard scoreBoard;
+
+  /**
+   *
+   */
+  public PongPlayer playerOne;
+
+  /**
+   *
+   */
+  public PongPlayer playerTwo;
+
+  /**
+   *
+   */
+  public PongSphere pongDemoSphere;
+
+  /**
    *  Constructor
    * @param reference of game
    *                  create two new players and hold a reference of game
    */
-  WelcomeScreen(Pong game) {
+  WelcomeScreen(Pong game, ScoreBoard scoreBoard) {
     this.game = game;
     greetings = new SpriteBatch();
     font = new BitmapFont();
     font.setColor(0.5f,0.4f,0,1);
     ctlInputProcessor = new CtlInputProcessor(game);
+    this.scoreBoard = scoreBoard;
+    this.playerOne = scoreBoard.getPlayerOne();
+    this.playerTwo = scoreBoard.getPlayerTwo();
     Gdx.input.setInputProcessor(ctlInputProcessor);
+    this.pongDemoSphere = new PongSphere();
   }
 
   @Override
@@ -58,9 +82,14 @@ public class WelcomeScreen implements Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     greetings.begin();
-    // magic lulz
-    font.draw(greetings, greetingsMsg, 350, 350);
+    font.draw(greetings, greetingsMsg, 350, 180);
     greetings.end();
+
+    pongDemoSphere.toggleHold();
+    pongDemoSphere.render();
+    playerOne.render();
+    playerTwo.render();
+
   }
 
   @Override
