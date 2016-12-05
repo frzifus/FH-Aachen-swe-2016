@@ -1,9 +1,4 @@
-# swe-pong
-
-[Inspiration](https://github.com/libgdx/libgdx/wiki/Scene2d)
-
+# SWE-Pong
+...
 # TODO:
 - Fix this game
-- Add sounds
-
-
