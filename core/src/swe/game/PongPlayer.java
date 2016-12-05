@@ -10,7 +10,8 @@ import com.badlogic.gdx.Input;
  * @author Frzifus
  */
 
-public class PongPlayer {
+public class PongPlayer extends GameObject {
+
   /**
    * player name
    */
@@ -20,36 +21,6 @@ public class PongPlayer {
    * number of remaining players life
    */
   private int lifeLeft;
-
-  /**
-   * width of the paddle
-   */
-  private int width;
-
-  /**
-   * height of the paddle
-   */
-  private int height;
-
-  /**
-   * x position...
-   */
-  private int positionX;
-
-  /**
-   * y position...
-   */
-  private int positionY;
-
-  /**
-   * @see com.badlogic.gdx.graphics.g2d.SpriteBatch
-   */
-  private SpriteBatch pSprite;
-
-  /**
-   * @see com.badlogic.gdx.graphics.Texture
-   */
-  private Texture pTexture;
 
   /**
    * Key to move up
@@ -63,17 +34,13 @@ public class PongPlayer {
 
   /**
    * Constructor with default name, lifeLeft, widht, height,
-   *                          positionX, positionY, pSprite and pTexture
+   *                          positionX, positionY, batch and texture
    */
   PongPlayer() {
+    super("PaddleImage.jpg");
     this.name = "default";
     this.lifeLeft = 3;
-    this.width = 10;
-    this.height = 80;
-    this.positionX = 10;
-    this.positionY = 360;
-    this.pSprite = new SpriteBatch();
-    this.pTexture = new Texture("PaddleImage.jpg");
+    this.sprite.setSize(10f, 80f);
     this.keyUp = Input.Keys.DPAD_UP;
     this.keyDown = Input.Keys.DPAD_DOWN;
   }
@@ -82,34 +49,25 @@ public class PongPlayer {
    * @see <a href="https://github.com/libgdx/libgdx/wiki/The-life-cycle">The life cycle</a>
    */
   public void render() {
-    this.pSprite.begin();
-    this.pSprite.draw(this.pTexture, this.positionX, this.positionY,
-                      this.width, this.height);
-    this.pSprite.end();
-  }
-
-  /**
-   * @see <a href="https://github.com/libgdx/libgdx/wiki/The-life-cycle">The life cycle</a>
-   */
-  public void dispose() {
-    this.pSprite.dispose();
-    this.pTexture.dispose();
+    batch.begin();
+    sprite.draw(batch);
+    batch.end();
   }
 
   /**
    * @param y
-   *        the y to increase positionY
+   *        the y to increase Y
    */
   public void MoveUp(int y) {
-    this.positionY += y;
+    this.sprite.setY(this.sprite.getY() + y);
   }
 
   /**
    * @param y
-   *        the y to reduce positionY
+   *        the y to reduce Y
    */
   public void MoveDown(int y) {
-    this.positionY -= y;
+    this.sprite.setY(this.sprite.getY() - y);
   }
 
   /**
@@ -128,18 +86,19 @@ public class PongPlayer {
   }
 
   /**
-   * @return the pSprite
+   * @param life
+   *        the life to set
    */
-  public SpriteBatch getpSprite() {
-    return this.pSprite;
+  public void setLifeLeft(int life) {
+    this.lifeLeft = life;
   }
 
   /**
    * @param life
    *        the life to set
    */
-  public void setLifeLeft(int life) {
-    this.lifeLeft = life;
+  public int getLifeLeft() {
+    return this.lifeLeft;
   }
 
   /**
@@ -163,20 +122,8 @@ public class PongPlayer {
    * @param height
    *        the height to set
    */
-  public void resizePlayer(int width, int height) {
-    this.width = width;
-    this.height = height;
-  }
-
-  /**
-   * @param positionX
-   *        the positionX to set
-   * @param positionY
-   *        the positionY to set
-   */
-  public void setStartPosition(int positionX, int positionY) {
-    this.positionX = positionX;
-    this.positionY = positionY;
+  public void resizePlayer(float width, float height) {
+    this.sprite.setSize(width, height);
   }
 
   /**

@@ -57,6 +57,8 @@ public class WelcomeScreen implements Screen {
 
     if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
        game.setScreen(game.gameScreen);
+    } else if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+      Gdx.app.exit();
     }
   }
 

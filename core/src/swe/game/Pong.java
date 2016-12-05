@@ -13,24 +13,25 @@ public class Pong extends Game {
   public WelcomeScreen welcomeScreen;
   public GameScreen gameScreen;
   public EndScreen endScreen;
+  public PauseScreen pauseScreen;
 
-  public static String winner;
-  public static String loser;
+  public ScoreBoard scoreBoard;
 
-  public String namePlayerOne;
-  public String namePlayerTwo;
+  public String playerOneName;
+  public String playerTwoName;
 
-  public Pong(String namePlayerOne, String namePlayerTwo) {
-    this.namePlayerOne = namePlayerOne;
-    this.namePlayerTwo = namePlayerTwo;
+  public Pong(String playerOneName, String playerTwoName) {
+    this.playerOneName = playerOneName;
+    this.playerTwoName = playerTwoName;
   }
 
   @Override
   public void create () {
-    gameScreen = new GameScreen(this);
+    scoreBoard = new ScoreBoard(playerOneName, playerTwoName);
     welcomeScreen = new WelcomeScreen(this);
-    endScreen = new EndScreen(this);
-
+    gameScreen = new GameScreen(this, scoreBoard);
+    endScreen = new EndScreen(this, scoreBoard);
+    pauseScreen = new PauseScreen(this);
     setScreen(welcomeScreen);
   }
 
@@ -38,8 +39,6 @@ public class Pong extends Game {
   public void dispose () {
     welcomeScreen.dispose();
     gameScreen.dispose();
-    endScreen.dispose();
   }
-
 
 }

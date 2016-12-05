@@ -17,12 +17,12 @@ public class GameScreen implements Screen {
   private static final int gameSpeed = 10;
 
   /**
-   * player one (left)
+   * reference to playerOne
    */
   private PongPlayer playerOne;
 
   /**
-   * player two (right)
+   * reference to playerTwo
    */
   private PongPlayer playerTwo;
 
@@ -31,17 +31,51 @@ public class GameScreen implements Screen {
    */
   public Pong game;
 
+
+  /**
+   * hold reference to scoreBoard
+   */
+  public ScoreBoard scoreBoard;
+
+
+  /**
+   * hold reference to pongSphere
+   */
+  public PongSphere pongSphere;
+
+  /**
+   * hold reference to collision
+   */
+  public Collision collision;
+
+  /**
+   * hold reference to playingField
+   */
+  public PlayingField playingField;
+
+
   /**
    *  Constructor
    * @param reference of game
    *                  create two new players and hold a reference of game
    */
-  GameScreen(Pong game) {
+  GameScreen(Pong game, ScoreBoard scoreBoard) {
     this.game = game;
-    this.playerOne = new PongPlayer();
-    this.playerTwo = new PongPlayer();
-    this.playerTwo.setStartPosition(780, 10);
-    this.playerOne.setInputKeys(Keys.W, Keys.S);
+    this.scoreBoard = scoreBoard;
+    this.pongSphere = new PongSphere();
+    this.playerOne = scoreBoard.getPlayerOne();
+    this.playerTwo = scoreBoard.getPlayerTwo();
+    this.playingField = new PlayingField();
+    this.collision = new Collision(playerOne, playerTwo, pongSphere,
+                                   playingField);
+
+    this.playerOne.setStartPosition(playingField.getX() + 10 ,
+                                    260);
+    this.playerTwo.setStartPosition(playingField.getX()
+                                    + playingField.getWidth()
+                                    - playerTwo.getWidth() - 10,
+                                    260);
+    playerOne.setInputKeys(Keys.W, Keys.S);
   }
 
   @Override
@@ -52,8 +86,20 @@ public class GameScreen implements Screen {
     Gdx.gl.glClearColor(1, 1, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-    this.CheckSomeoneDie();
+    playingField.render();
+    collision.Check();
+    scoreBoard.showScore();
 
+    if (this.scoreBoard.CheckSomeoneDie() ||
+        Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+      game.setScreen(game.endScreen);
+    }
+
+    if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+      game.setScreen(game.pauseScreen);
+    }
+
+    this.pongSphere.render();
     this.playerOne.render();
     this.playerTwo.render();
   }
@@ -79,19 +125,6 @@ public class GameScreen implements Screen {
 
   @Override
   public void dispose() {
-    this.playerOne.dispose();
-  }
-
-  private void CheckSomeoneDie() {
-    if(!playerOne.isStillAlive()) {
-      game.winner = playerTwo.getName();
-      game.loser  = playerOne.getName();
-      game.setScreen(game.endScreen);
-    } else if (!playerTwo.isStillAlive()) {
-      game.winner = playerOne.getName();
-      game.loser  = playerTwo.getName();
-      game.setScreen(game.endScreen);
-    }
   }
 
 }
