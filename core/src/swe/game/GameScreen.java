@@ -89,9 +89,10 @@ public class GameScreen implements Screen {
     playingField.render();
     collision.Check();
     scoreBoard.showScore();
-
-    if (this.scoreBoard.CheckSomeoneDie() ||
-        Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+    if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+      Gdx.app.exit();
+    }
+    if (this.scoreBoard.CheckSomeoneDie()) {
       game.setScreen(game.endScreen);
     }
 

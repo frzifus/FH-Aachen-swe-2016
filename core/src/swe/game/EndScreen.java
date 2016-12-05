@@ -3,6 +3,7 @@ package swe.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Input.Keys;
 
 /**
  * @author Frzifus
@@ -36,22 +37,19 @@ public class EndScreen implements Screen {
     Gdx.gl.glClearColor(1, 1, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     scoreBoard.showWinner();
+    if (Gdx.input.isKeyPressed(Keys.SPACE) ||
+        Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+        scoreBoard.printResJson();
+        Gdx.app.exit();
+      }
 
-    // bullshit
-    if ((System.currentTimeMillis() - startTime) / 1000 > 6.0) {
-      scoreBoard.printResJson();
-      Gdx.app.exit();
-    }
   }
 
   @Override
   public void resize(int width, int height) {}
 
   @Override
-  public void show() {
-    // bullshit
-    this.startTime = System.currentTimeMillis();
-  }
+  public void show() {}
 
   @Override
   public void hide() {
