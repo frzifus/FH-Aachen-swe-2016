@@ -1,9 +1,8 @@
 package swe.game;
 
-
-
 import java.util.Random;
 import com.badlogic.gdx.graphics.Texture;
+
 /**
  * @author Frzifus
  */

@@ -113,7 +113,7 @@ public class PongPlayer extends GameObject {
    *              check if player is still alive
    */
   public boolean isStillAlive() {
-    return (this.lifeLeft < 0) ? false : true;
+    return (this.lifeLeft < 1) ? false : true;
   }
 
   /**
