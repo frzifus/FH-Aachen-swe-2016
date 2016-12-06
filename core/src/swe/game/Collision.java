@@ -80,7 +80,7 @@ public class Collision {
    * refresh score if plaer score1
    */
   private void RefreshScore() {
-    if (playingField.getX() > pongSphere.getX()) {
+    if (playingField.getX() > pongSphere.getX() + pongSphere.getWidth()) {
       pongPlayerOne.reduceLife();
       pongSphere.resetPosition();
     } else if (playingField.getX()
@@ -99,8 +99,8 @@ public class Collision {
     } else {
       pongPlayerOne.setMoveDownDirective(1);
     }
-    // magic
-    if (479 < pongPlayerOne.getY()) {
+
+    if (playingField.getHeight() - 20 <= pongPlayerOne.getY()) {
       pongPlayerOne.setMoveUpDirective(0);
     } else {
       pongPlayerOne.setMoveUpDirective(1);
@@ -112,8 +112,7 @@ public class Collision {
       pongPlayerTwo.setMoveDownDirective(1);
     }
 
-    // magic
-    if (480 <= pongPlayerTwo.getY()) {
+    if (playingField.getHeight() - 20 <= pongPlayerTwo.getY()) {
       pongPlayerTwo.setMoveUpDirective(0);
     } else {
       pongPlayerTwo.setMoveUpDirective(1);

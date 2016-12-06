@@ -24,7 +24,7 @@ public class PlayingField extends GameObject {
 
   public void centerPlayingField() {
     float startX = Gdx.graphics.getWidth()/2f - this.getWidth()/2f;
-    float startY = Gdx.graphics.getHeight() - this.getHeight()/1.3f;
+    float startY = Gdx.graphics.getHeight() - this.getHeight()/0.92f;
     this.setStartPosition(startX, startY);
   }
 

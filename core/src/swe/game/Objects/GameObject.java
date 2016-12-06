@@ -54,7 +54,7 @@ public class GameObject {
   }
 
   public float getHeight() {
-    return sprite.getWidth();
+    return sprite.getHeight();
   }
 
   public float getX() {
