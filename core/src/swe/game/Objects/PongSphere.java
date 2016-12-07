@@ -25,7 +25,7 @@ public class PongSphere extends GameObject {
 
   PongSphere() {
     super("SphereImage.png");
-    this.sprite.setSize(20f, 20f);
+    this.sprite.setSize(5f, 5f);
     this.setStartPosition(xDefault, yDefault);
     this.rand = new Random();
     this.overallSpeed = 1f;

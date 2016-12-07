@@ -52,7 +52,7 @@ public class PauseScreen implements Screen {
     font.draw(msgBatch, pauseMsg, 350, 350);
     msgBatch.end();
 
-    Gdx.gl.glClearColor(1, 1, 0, 0);
+    Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
