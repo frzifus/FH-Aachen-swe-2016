@@ -25,6 +25,7 @@ public class TestBot {
   TestBot(PongPlayer playerBot, PongSphere pongSphere) {
     this.pongSphere = pongSphere;
     this.playerBot = playerBot;
+    this.playerBot.setPlayerSpeed(5);
   }
 
   public void Move() {  // split this
@@ -42,9 +43,9 @@ public class TestBot {
     }
 
     if (this.yPosition > pongSphere.getY() + 5) {
-      this.playerBot.MoveDown(5);
+      this.playerBot.MoveDown();
     } else if (this.yPosition < pongSphere.getY() - 5) {
-      this.playerBot.MoveUp(5);
+      this.playerBot.MoveUp();
     }
   }
 }

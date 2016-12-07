@@ -36,6 +36,8 @@ public class PongPlayer extends GameObject {
 
   private int moveUpDirective;
 
+  private int playerSpeed;
+
   private TestBot testBot;
 
   /**
@@ -48,7 +50,8 @@ public class PongPlayer extends GameObject {
     this.lifeLeft = 3;
     this.moveUpDirective = 1;
     this.moveDownDirective = 1;
-    this.sprite.setSize(10f, 80f);
+    this.sprite.setSize(10f, 73f);
+    this.playerSpeed = 10;
     this.keyUp = Input.Keys.DPAD_UP;
     this.keyDown = Input.Keys.DPAD_DOWN;
   }
@@ -66,9 +69,9 @@ public class PongPlayer extends GameObject {
    * @param y
    *        the y to increase Y
    */
-  public void MoveUp(int y) {
-    y = y * moveUpDirective;
-    this.sprite.setY(this.sprite.getY() + y);
+  public void MoveUp() {
+    int var = this.playerSpeed * moveUpDirective;
+    this.sprite.setY(this.sprite.getY() + (this.playerSpeed * moveUpDirective));
   }
 
   /**
@@ -85,14 +88,13 @@ public class PongPlayer extends GameObject {
     this.moveDownDirective = y;
   }
 
-
   /**
    * @param y
    *        the y to reduce Y
    */
-  public void MoveDown(int y) {
-    y = y * moveDownDirective;
-    this.sprite.setY(this.sprite.getY() - y);
+  public void MoveDown() {
+    int var = this.playerSpeed * moveDownDirective;
+    this.sprite.setY(this.sprite.getY() - var);
   }
 
   /**
@@ -173,15 +175,23 @@ public class PongPlayer extends GameObject {
       return;
     }
     if(Gdx.input.isKeyPressed(this.keyUp)) {
-      MoveUp(1 * gameSpeed);
+      MoveUp();
     } else if(Gdx.input.isKeyPressed(this.keyDown)) {
-      MoveDown(1 * gameSpeed);
+      MoveDown();
     }
 
   }
 
   public void ActivateBot(PongSphere pongSphere) {
     this.testBot = new TestBot(this, pongSphere);
+  }
+
+  public void setPlayerSpeed(int playerSpeed) {
+    this.playerSpeed = playerSpeed;
+  }
+
+  public int getPlayerSpeed() {
+    return this.playerSpeed;
   }
 
 }

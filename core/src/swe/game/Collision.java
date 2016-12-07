@@ -49,7 +49,8 @@ public class Collision {
     this.SpherePlayerHit();
     this.SphereWantLeaveY();
     this.RefreshScore();
-    this.yPlayerLimitation();
+    this.yPlayerLimitation(this.pongPlayerOne);
+    this.yPlayerLimitation(this.pongPlayerTwo);
   }
 
   /**
@@ -93,29 +94,17 @@ public class Collision {
   /**
    * #magic!!
    */
-  public void yPlayerLimitation() {
-    if (playingField.getY() >= pongPlayerOne.getY()) {
-      pongPlayerOne.setMoveDownDirective(0);
+  public void yPlayerLimitation(PongPlayer pongPlayer) {
+    if (playingField.getY() > pongPlayer.getY() - 10) {
+      pongPlayer.setMoveDownDirective(0);
     } else {
-      pongPlayerOne.setMoveDownDirective(1);
+      pongPlayer.setMoveDownDirective(1);
     }
 
-    if (playingField.getHeight() - 20 <= pongPlayerOne.getY()) {
-      pongPlayerOne.setMoveUpDirective(0);
+    if (playingField.getHeight() - 20 <= pongPlayer.getY()) {
+      pongPlayer.setMoveUpDirective(0);
     } else {
-      pongPlayerOne.setMoveUpDirective(1);
-    }
-
-    if (playingField.getY() >= pongPlayerTwo.getY()) {
-      pongPlayerTwo.setMoveDownDirective(0);
-    } else {
-      pongPlayerTwo.setMoveDownDirective(1);
-    }
-
-    if (playingField.getHeight() - 20 <= pongPlayerTwo.getY()) {
-      pongPlayerTwo.setMoveUpDirective(0);
-    } else {
-      pongPlayerTwo.setMoveUpDirective(1);
+      pongPlayer.setMoveUpDirective(1);
     }
   }
 
