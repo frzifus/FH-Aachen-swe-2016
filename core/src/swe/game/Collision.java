@@ -71,8 +71,12 @@ public class Collision {
    * Test
    */
   private void SphereWantLeaveY() {
-    if (!Intersector.overlaps(playingField.getSprite().getBoundingRectangle(),
-                            pongSphere.getSprite().getBoundingRectangle())) {
+    if (pongSphere.getY() + (1.5 * pongSphere.getHeight()) >=
+        playingField.getY() + playingField.getHeight()) {
+      pongSphere.sphereWantLeaveY();
+    }
+
+    if (pongSphere.getY() - pongSphere.getHeight() < playingField.getY()) {
       pongSphere.sphereWantLeaveY();
     }
   }
