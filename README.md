@@ -1,5 +1,5 @@
 # SWE-Pong
-<b><a href="https://github.com/denn-s/swe-pong/releases/download/0.1/Pong-pre_release-0.1.jar">Version 0.1 [pre release]</a></b>
+<b><a href="https://github.com/denn-s/swe-pong/releases/download/0.1/Pong-pre_release-0.2.jar">Version 0.2 [pre release]</a></b>
 
 **How to use:**
 
