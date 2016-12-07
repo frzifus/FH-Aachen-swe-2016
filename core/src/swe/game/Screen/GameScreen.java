@@ -64,6 +64,11 @@ public class GameScreen implements Screen {
   private Music music;
 
   /**
+   *
+   */
+  private TestBot testBot;
+
+  /**
    *  Constructor
    * @param reference of game
    *                  create two new players and hold a reference of game
@@ -87,14 +92,18 @@ public class GameScreen implements Screen {
                                     + playingField.getWidth()
                                     - playerTwo.getWidth() - 10,
                                     260);
-    playerOne.setInputKeys(Keys.W, Keys.S);
     ctlInputProcessor = new CtlInputProcessor(game);
     Gdx.input.setInputProcessor(ctlInputProcessor);
+
+    playerOne.setInputKeys(Keys.W, Keys.S);
+
+    this.testBot = new TestBot(pongSphere, playerTwo);
   }
 
   @Override
   public void render(float delta) {
     this.playerOne.checkInput(gameSpeed);
+    this.testBot.move();
     this.playerTwo.checkInput(gameSpeed);
 
     Gdx.gl.glClearColor(0, 0, 0, 0);
