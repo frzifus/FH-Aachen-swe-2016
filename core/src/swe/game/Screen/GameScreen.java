@@ -79,6 +79,7 @@ public class GameScreen implements Screen {
                                    playingField);
 
     this.music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+    this.music.play();
 
     this.playerOne.setStartPosition(playingField.getX() + 10 ,
                                     260);
