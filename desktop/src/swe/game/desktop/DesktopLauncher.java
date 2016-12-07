@@ -10,8 +10,8 @@ public class DesktopLauncher {
     config.title  = "SWE- Pong";
     config.width  = 800;
     config.height = 600;
-    String p1 = "default1";
-    String p2 = "default2";
+    String p1 = "Default";
+    String p2 = "testbot";
     if (arg.length >= 2) {
       p1 = arg[0];
       p2 = arg[1];
