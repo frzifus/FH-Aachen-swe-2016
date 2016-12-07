@@ -5,7 +5,10 @@
 
     java -jar Pong-X.X.jar SpielerNameEins SpielerNameZwei
 
-# TODO:
+# Screenshot
+<p align="center"><img src="screenshot.png" alt="Pong"/></p>
+
+**TODO:**
 - Fix controll flow
 - Fix peddle hitbox
 - Fix pause screen
