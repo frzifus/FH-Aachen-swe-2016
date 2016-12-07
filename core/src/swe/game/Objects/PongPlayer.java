@@ -36,6 +36,8 @@ public class PongPlayer extends GameObject {
 
   private int moveUpDirective;
 
+  private TestBot testBot;
+
   /**
    * Constructor with default name, lifeLeft, widht, height,
    *                          positionX, positionY, batch and texture
@@ -166,6 +168,10 @@ public class PongPlayer extends GameObject {
    *
    */
   public void checkInput(int gameSpeed) {
+    if(this.testBot != null) {
+      this.testBot.Move();
+      return;
+    }
     if(Gdx.input.isKeyPressed(this.keyUp)) {
       MoveUp(1 * gameSpeed);
     } else if(Gdx.input.isKeyPressed(this.keyDown)) {
@@ -173,4 +179,9 @@ public class PongPlayer extends GameObject {
     }
 
   }
+
+  public void ActivateBot(PongSphere pongSphere) {
+    this.testBot = new TestBot(this, pongSphere);
+  }
+
 }

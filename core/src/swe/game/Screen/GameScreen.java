@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
+import java.util.Objects;
 
 /**
  * @author Frzifus
@@ -97,14 +98,20 @@ public class GameScreen implements Screen {
 
     playerOne.setInputKeys(Keys.W, Keys.S);
 
-    this.testBot = new TestBot(pongSphere, playerTwo);
+    if (Objects.equals(this.playerTwo.getName(), "testbot")) {
+      this.playerTwo.ActivateBot(pongSphere);
+    }
+    if (Objects.equals(this.playerOne.getName(), "testbot")) {
+      this.playerOne.ActivateBot(pongSphere);
+    }
   }
 
   @Override
   public void render(float delta) {
     this.playerOne.checkInput(gameSpeed);
-    this.testBot.move();
+
     this.playerTwo.checkInput(gameSpeed);
+
 
     Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
