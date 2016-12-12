@@ -36,6 +36,16 @@ public class WelcomeScreen implements Screen {
   /**
    *
    */
+  private String userCtlInfoOne;
+
+  /**
+   *
+   */
+  private String userCtlInfoTwo;
+
+  /**
+   *
+   */
   public CtlInputProcessor ctlInputProcessor;
 
   /**
@@ -72,8 +82,11 @@ public class WelcomeScreen implements Screen {
     this.scoreBoard = scoreBoard;
     this.playerOne = scoreBoard.getPlayerOne();
     this.playerTwo = scoreBoard.getPlayerTwo();
+    this.userCtlInfoOne = playerOne.getName() + "\nMove up: W \nMove down: S";
+    this.userCtlInfoTwo = playerTwo.getName() + "\nMove up: Up \nMove down: Down";
     Gdx.input.setInputProcessor(ctlInputProcessor);
     this.pongDemoSphere = new PongSphere();
+    System.out.println("hallo \uf02d");
   }
 
   @Override
@@ -82,6 +95,10 @@ public class WelcomeScreen implements Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     greetings.begin();
+    font.draw(greetings, userCtlInfoOne,playerOne.getX(),
+    		 2 * playerOne.getHeight() + playerOne.getY());
+    font.draw(greetings, userCtlInfoTwo,playerTwo.getX() - 100,
+   		 2 * playerTwo.getHeight() + playerTwo.getY());
     font.draw(greetings, greetingsMsg, 350, 180);
     greetings.end();
 
