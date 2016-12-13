@@ -28,7 +28,10 @@ public class CtlInputProcessor implements InputProcessor {
   public boolean keyUp(int keycode) {
     if (keycode == Input.Keys.ESCAPE) {
       Gdx.app.exit();
-      keyPressed = false;
+    }
+    if (game.getScreen() == game.welcomeScreen) {
+      game.setScreen(game.gameScreen);
+      return false;
     }
 
     if (keycode == Input.Keys.M) {
