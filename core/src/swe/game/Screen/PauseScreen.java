@@ -47,20 +47,15 @@ public class PauseScreen implements Screen {
   @Override
   public void render(float delta) {
 
-    msgBatch.begin();
-    // magic lulz
-    font.draw(msgBatch, pauseMsg, 350, 350);
-    msgBatch.end();
-
     Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
-    // if(Gdx.input.isKeyPressed(Keys.SPACE)) {
-    //   game.setScreen(game.gameScreen);
-    // } else if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {
-    //   Gdx.app.exit();
-    // }
+    msgBatch.begin();
+    // magic lulz
+    font.draw(msgBatch, pauseMsg, 320, 350);
+    msgBatch.end();
+
   }
 
   @Override

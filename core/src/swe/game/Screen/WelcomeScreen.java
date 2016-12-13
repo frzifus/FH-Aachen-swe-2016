@@ -31,7 +31,22 @@ public class WelcomeScreen implements Screen {
   /**
    *
    */
-  private String greetingsMsg = "Space to enter!";
+  private String greetingsMsg = "Zum starten beliebige Taste drücken!";
+
+  /**
+   *
+   */
+  private String pauseMsg = "Leertaste zum pausieren!";
+
+  /**
+   *
+   */
+  private String userCtlInfoOne;
+
+  /**
+   *
+   */
+  private String userCtlInfoTwo;
 
   /**
    *
@@ -72,6 +87,8 @@ public class WelcomeScreen implements Screen {
     this.scoreBoard = scoreBoard;
     this.playerOne = scoreBoard.getPlayerOne();
     this.playerTwo = scoreBoard.getPlayerTwo();
+    this.userCtlInfoOne = playerOne.getName() + "\nMove up: W \nMove down: S";
+    this.userCtlInfoTwo = playerTwo.getName() + "\nMove up: Up \nMove down: Down";
     Gdx.input.setInputProcessor(ctlInputProcessor);
     this.pongDemoSphere = new PongSphere();
   }
@@ -82,7 +99,12 @@ public class WelcomeScreen implements Screen {
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
     greetings.begin();
-    font.draw(greetings, greetingsMsg, 350, 180);
+    font.draw(greetings, userCtlInfoOne,playerOne.getX(),
+         2 * playerOne.getHeight() + playerOne.getY());
+    font.draw(greetings, userCtlInfoTwo,playerTwo.getX() - 100,
+       2 * playerTwo.getHeight() + playerTwo.getY());
+    font.draw(greetings, pauseMsg, 320,180);
+    font.draw(greetings, greetingsMsg, 290, 150);
     greetings.end();
 
     pongDemoSphere.toggleHold();
